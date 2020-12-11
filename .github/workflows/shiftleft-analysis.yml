@@ -17,9 +17,13 @@ jobs:
     # 2. Compile or build the project before invoking scan
     #    Example: mvn compile, or npm install or pip install goes here
     # 3. Invoke ShiftLeft Scan with the github token. Leave the workspace empty to use relative url
-
+    - name: Install external tool
+      run: |
+        sudo gem install brakeman
+        mkdir -p reports
+        brakeman -o reports/source-ruby-report.json
     - name: Perform ShiftLeft Scan
-      uses: ShiftLeftSecurity/scan-action@master
+      uses: ShiftLeftSecurity/scan-action@fix/gh-emoji
       env:
         WORKSPACE: ""
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
