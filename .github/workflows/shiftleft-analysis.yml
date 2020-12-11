@@ -21,7 +21,7 @@ jobs:
       run: |
         sudo gem install brakeman
         mkdir -p reports
-        brakeman -o reports/source-ruby-report.json
+        brakeman -q -z -o reports/source-ruby-report.json
     - name: Perform ShiftLeft Scan
       uses: ShiftLeftSecurity/scan-action@fix/gh-emoji
       env:
